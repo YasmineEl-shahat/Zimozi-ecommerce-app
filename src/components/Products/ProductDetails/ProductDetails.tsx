@@ -3,6 +3,7 @@ import { Box, CircularProgress, Alert, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import useProductDetails from "../../../hooks/useProductDetails.ts";
+import useProductCard from "../../../hooks/useProductCard.ts";
 import {
   StyledBox,
   StyledTypography,
@@ -12,7 +13,9 @@ import {
 
 const ProductDetails: React.FC = () => {
   const navigate = useNavigate();
-  const { product, loading, error, handleAddToCart } = useProductDetails();
+  const { product, loading, error } = useProductDetails();
+  const { handleAddToCart, handleRemoveFromCart, isInCart } = useProductCard();
+  const inCart: boolean | null = product ? isInCart(product.id) : null;
 
   if (loading) {
     return (
@@ -50,9 +53,16 @@ const ProductDetails: React.FC = () => {
       <StyledButton
         variant="contained"
         color="primary"
-        onClick={handleAddToCart}
+        inCart={inCart}
+        onClick={() =>
+          inCart && product
+            ? handleRemoveFromCart(product.id)
+            : product
+            ? handleAddToCart(product)
+            : ""
+        }
       >
-        Add to Cart
+        {inCart && product ? "Remove from Cart" : "Add to Cart"}
       </StyledButton>
     </StyledBox>
   );

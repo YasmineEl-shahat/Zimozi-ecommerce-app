@@ -22,6 +22,11 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
   textAlign: "center",
 }));
 
-export const StyledButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(3),
-}));
+export const StyledButton = styled(Button)<{ inCart: boolean | null }>(
+  ({ theme, inCart }) => ({
+    marginTop: theme.spacing(3),
+    background: inCart
+      ? theme.palette.secondary.main
+      : theme.palette.primary.main,
+  })
+);
