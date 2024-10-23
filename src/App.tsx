@@ -6,7 +6,7 @@ import store from "./redux/store.ts";
 import Home from "./pages/Home/Home.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import Register from "./pages/Auth/Register.tsx";
-// import Cart from "./pages/Cart";
+import Cart from "./pages/Cart.tsx";
 // import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile.tsx";
 import ProductDetails from "./pages/ProductDetailsPage.tsx";
@@ -23,8 +23,8 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            {/* <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} /> */}
+            <Route path="/cart" element={<Cart />} />
+            {/* <Route path="/checkout" element={<Checkout />} /> */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/product/:id" element={<ProductDetails />} />
           </Routes>
