@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button, Divider } from "@mui/material";
+import { Box, Typography, Button, Divider, IconButton } from "@mui/material";
 import useCart from "../../hooks/useCart.ts";
 import {
   StyledCard,
@@ -11,7 +11,11 @@ import {
   StyledBox,
   StyledDeleteIcon,
 } from "./Cart.styles.ts";
+import { ArrowBack } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
   const { items, totalAmount, handleRemoveItem, handleQuantityChange } =
     useCart();
 
@@ -21,9 +25,16 @@ const Cart: React.FC = () => {
 
   return (
     <Box>
+      <IconButton
+        onClick={() => navigate("/")} // Navigate back to the product list
+        sx={{ position: "absolute", top: 64, left: 16 }}
+      >
+        <ArrowBack />
+      </IconButton>
       <Typography variant="h4" gutterBottom>
         Shopping Cart
       </Typography>
+
       <Divider sx={{ mb: 2 }} />
 
       {items.map((item) => (

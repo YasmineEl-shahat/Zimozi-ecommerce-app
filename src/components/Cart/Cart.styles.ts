@@ -41,6 +41,7 @@ export const StyledIconButton = styled(IconButton)(({ theme }) => ({
 
 export const ItemImage = styled("img")({
   width: "100%",
+  height: 200,
   borderRadius: "8px",
 });
 

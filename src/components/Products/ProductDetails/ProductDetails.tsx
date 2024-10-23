@@ -38,7 +38,7 @@ const ProductDetails: React.FC = () => {
     <StyledBox>
       <IconButton
         onClick={() => navigate("/")} // Navigate back to the product list
-        sx={{ position: "absolute", top: 16, left: 16 }}
+        sx={{ position: "absolute", top: 64, left: 16 }}
       >
         <ArrowBack />
       </IconButton>

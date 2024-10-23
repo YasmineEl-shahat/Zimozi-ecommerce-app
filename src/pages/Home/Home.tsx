@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <StyledContainer sx={{ mt: 5 }}>
+    <StyledContainer>
       <StyledTextField
         fullWidth
         label="Search products"

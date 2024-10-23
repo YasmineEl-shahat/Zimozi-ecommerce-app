@@ -28,3 +28,10 @@ code {
     transform: translateY(0);
   }
 }
+
+.custom-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex;
+  align-items: center;
+}
