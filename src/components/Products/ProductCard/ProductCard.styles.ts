@@ -21,12 +21,16 @@ export const StyledTypography = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
 }));
 
-export const IconContainer = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: "50%",
-  padding: theme.spacing(0.5),
-  boxShadow: theme.shadows[2],
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-}));
+export const IconContainer = styled("div")<{ inCart: boolean }>(
+  ({ theme, inCart }) => ({
+    backgroundColor: inCart
+      ? theme.palette.primary.main
+      : theme.palette.background.paper,
+    borderRadius: "50%",
+    padding: theme.spacing(0.5),
+    boxShadow: theme.shadows[2],
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+  })
+);

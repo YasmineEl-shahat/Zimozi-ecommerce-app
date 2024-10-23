@@ -15,7 +15,8 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { handleAddToCart } = useProductCard();
+  const { handleAddToCart, handleRemoveFromCart, isInCart } = useProductCard();
+  const inCart: boolean = isInCart(product.id);
   return (
     <StyledCard>
       <Link
@@ -43,7 +44,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <StyledTypography variant="body2" color="text.secondary">
           ${product.price}
         </StyledTypography>
-        <IconContainer onClick={() => handleAddToCart(product)}>
+        <IconContainer
+          inCart={inCart}
+          onClick={() =>
+            inCart ? handleRemoveFromCart(product.id) : handleAddToCart(product)
+          }
+        >
           <ShoppingCartIcon />
         </IconContainer>
       </CardActions>

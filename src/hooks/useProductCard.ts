@@ -1,9 +1,14 @@
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/slices/cartSlice.ts";
+import { useDispatch, useSelector } from "react-redux";
 import { Product } from "../types/Product.ts";
+import {
+  selectCart,
+  removeFromCart,
+  addToCart,
+} from "../redux/slices/cartSlice.ts";
 
 const useProductCard = () => {
   const dispatch = useDispatch();
+  const cartItems = useSelector(selectCart).items;
 
   const handleAddToCart = (product: Product) => {
     dispatch(
@@ -16,8 +21,12 @@ const useProductCard = () => {
       })
     );
   };
+  const handleRemoveFromCart = (id: number) => {
+    dispatch(removeFromCart(id));
+  };
+  const isInCart = (id: number) => cartItems.some((item) => item.id === id);
 
-  return { handleAddToCart };
+  return { handleAddToCart, handleRemoveFromCart, isInCart };
 };
 
 export default useProductCard;
