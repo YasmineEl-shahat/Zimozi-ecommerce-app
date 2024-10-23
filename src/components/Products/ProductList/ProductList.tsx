@@ -17,31 +17,29 @@ const ProductList: React.FC<ProductListProps> = ({ searchTerm }) => {
     handlePageChange,
   } = useProductList(searchTerm);
 
-  if (loading) {
-    return (
-      <CenteredBox>
-        <CircularProgress />
-      </CenteredBox>
-    );
-  }
-
-  if (error) {
-    return <Alert severity="error">{error}</Alert>;
-  }
-
   return (
     <>
-      <StyledBox>
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </StyledBox>
-      <Pagination
-        count={totalPages}
-        page={currentPage}
-        onChange={handlePageChange}
-        sx={{ mt: 2, display: "flex", justifyContent: "center" }}
-      />
+      {loading ? (
+        <CenteredBox>
+          <CircularProgress />
+        </CenteredBox>
+      ) : error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : (
+        <>
+          <StyledBox>
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </StyledBox>
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            sx={{ mt: 2, display: "flex", justifyContent: "center" }}
+          />
+        </>
+      )}
     </>
   );
 };

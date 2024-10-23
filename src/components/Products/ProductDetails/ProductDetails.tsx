@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, CircularProgress, Alert, IconButton } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Alert,
+  IconButton,
+  Container,
+} from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import useProductDetails from "../../../hooks/useProductDetails.ts";
@@ -17,54 +23,53 @@ const ProductDetails: React.FC = () => {
   const { handleAddToCart, handleRemoveFromCart, isInCart } = useProductCard();
   const inCart: boolean | null = product ? isInCart(product.id) : null;
 
-  if (loading) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="80vh"
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  if (error) {
-    return <Alert severity="error">{error}</Alert>;
-  }
-
   return (
-    <StyledBox>
+    <Container sx={{ position: "relative" }}>
       <IconButton
-        onClick={() => navigate("/")} // Navigate back to the product list
-        sx={{ position: "absolute", top: 64, left: 16 }}
+        onClick={() => navigate("/")}
+        sx={{ position: "absolute", top: 0 }}
       >
         <ArrowBack />
       </IconButton>
-      <StyledImage src={product?.image} alt={product?.title} />
-      <StyledTypography variant="h4">{product?.title}</StyledTypography>
-      <StyledTypography variant="h6" color="text.secondary">
-        ${product?.price}
-      </StyledTypography>
-      <StyledTypography variant="body1">
-        {product?.description}
-      </StyledTypography>
-      <StyledButton
-        variant="contained"
-        color="primary"
-        inCart={inCart}
-        onClick={() =>
-          inCart && product
-            ? handleRemoveFromCart(product.id)
-            : product
-            ? handleAddToCart(product)
-            : ""
-        }
-      >
-        {inCart && product ? "Remove from Cart" : "Add to Cart"}
-      </StyledButton>
-    </StyledBox>
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="80vh"
+          width="100%"
+        >
+          <CircularProgress />
+        </Box>
+      ) : error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : (
+        <StyledBox>
+          <StyledImage src={product?.image} alt={product?.title} />
+          <StyledTypography variant="h4">{product?.title}</StyledTypography>
+          <StyledTypography variant="h6" color="text.secondary">
+            ${product?.price}
+          </StyledTypography>
+          <StyledTypography variant="body1">
+            {product?.description}
+          </StyledTypography>
+          <StyledButton
+            variant="contained"
+            color="primary"
+            inCart={inCart}
+            onClick={() =>
+              inCart && product
+                ? handleRemoveFromCart(product.id)
+                : product
+                ? handleAddToCart(product)
+                : ""
+            }
+          >
+            {inCart && product ? "Remove from Cart" : "Add to Cart"}
+          </StyledButton>
+        </StyledBox>
+      )}
+    </Container>
   );
 };
 

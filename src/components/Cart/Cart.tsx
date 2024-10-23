@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, Button, Divider, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Divider,
+  IconButton,
+  Container,
+} from "@mui/material";
 import useCart from "../../hooks/useCart.ts";
 import {
   StyledCard,
@@ -13,30 +20,45 @@ import {
 } from "./Cart.styles.ts";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import emptyCart from "../../assets/images/empty-cart.svg";
 
 const Cart: React.FC = () => {
   const navigate = useNavigate();
   const { items, totalAmount, handleRemoveItem, handleQuantityChange } =
     useCart();
 
-  if (items.length === 0) {
-    return <Typography variant="h5">Your cart is empty.</Typography>;
-  }
-
-  return (
-    <Box>
+  return items.length === 0 ? (
+    <Container sx={{ position: "relative" }}>
       <IconButton
-        onClick={() => navigate("/")} // Navigate back to the product list
-        sx={{ position: "absolute", top: 64, left: 16 }}
+        onClick={() => navigate("/")}
+        sx={{ position: "absolute", top: 0 }}
       >
         <ArrowBack />
       </IconButton>
+      <Box
+        display="flex"
+        alignItems="center"
+        flexDirection="column"
+        width="100%"
+      >
+        <img src={emptyCart} alt="empty cart" width={200} />
+        <Typography variant="h5" ml={5} mt={2}>
+          Your cart is empty.
+        </Typography>
+      </Box>
+    </Container>
+  ) : (
+    <Box px={3} width="100%">
+      <IconButton
+        onClick={() => navigate("/")}
+        sx={{ position: "absolute", top: 150 }}
+      >
+        <ArrowBack />
+      </IconButton>{" "}
       <Typography variant="h4" gutterBottom>
         Shopping Cart
       </Typography>
-
       <Divider sx={{ mb: 2 }} />
-
       {items.map((item) => (
         <StyledCard key={item.id}>
           <StyledBox sx={{ flex: 1, display: "flex", alignItems: "center" }}>
@@ -66,7 +88,6 @@ const Cart: React.FC = () => {
           </StyledBox>
         </StyledCard>
       ))}
-
       <Divider sx={{ mt: 2 }} />
       <Typography variant="h5" sx={{ mt: 2 }}>
         Total: ${totalAmount.toFixed(2)}
