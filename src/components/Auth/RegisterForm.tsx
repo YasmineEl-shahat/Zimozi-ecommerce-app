@@ -155,7 +155,7 @@ const RegisterForm: React.FC = () => {
           {loading ? <CircularProgress size={24} /> : "Register"}
         </StyledButton>
         <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <Link to="/auth/login">Login</Link>
         </Typography>
       </form>
     </StyledBox>

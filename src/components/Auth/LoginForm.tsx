@@ -126,7 +126,7 @@ const LoginForm: React.FC = () => {
           Continue with Google
         </StyledButton>
         <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-          Don't have an account? <Link to="/register">Create one</Link>
+          Don't have an account? <Link to="/auth/register">Create one</Link>
         </Typography>
       </form>
     </StyledBox>
