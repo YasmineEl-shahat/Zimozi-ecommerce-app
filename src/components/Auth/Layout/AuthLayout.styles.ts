@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Container, Box, TextField, Button } from "@mui/material";
-import backgroundImage from "../../../assets/images/login-background.jpg";
+import backgroundImage from "../../../assets/images/login-background.webp";
 
 export const StyledContainer = styled(Container)(({ theme }) => ({
   backgroundImage: `url(${backgroundImage})`,

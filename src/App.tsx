@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import store from "./redux/store.ts";
-import Home from "./pages/Home.tsx";
+import Home from "./pages/Home/Home.tsx";
 import Login from "./pages/Auth/Login.tsx";
 import Register from "./pages/Auth/Register.tsx";
 // import Cart from "./pages/Cart";
 // import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile.tsx";
-import ProductDetails from "./pages/ProductDetails.tsx";
+import ProductDetails from "./pages/ProductDetailsPage.tsx";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme.ts";
 
