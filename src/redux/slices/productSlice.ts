@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
 import { RootState } from "../store";
 import { Product } from "../../types/Product";
+import { getProducts } from "../../utils/api.ts";
 
 interface ProductState {
   products: Product[]; // Store all products here
@@ -26,7 +26,7 @@ const productsPerPage = 8; // Define how many products to show per page
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await axios.get(`https://fakestoreapi.com/products`);
+    const response = await getProducts();
     return response.data;
   }
 );
