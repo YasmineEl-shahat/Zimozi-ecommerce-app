@@ -9,7 +9,9 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => (
   <Box>
     <Header />
-    <Container sx={{ mt: 4 }}>{children}</Container>
+    <Container sx={{ mt: 4, alignItems: "start", minHeight: 0 }}>
+      {children}
+    </Container>
   </Box>
 );
 

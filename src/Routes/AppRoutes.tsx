@@ -22,11 +22,16 @@ export const AppRoutes = () => {
           <>
             <Route path="/protected/*" element={<ProtectedRoutes />} />
             <Route path="/auth/*" element={<Navigate to="/" />} />
+            <Route path="/*" element={<PublicRoutes />} />
           </>
         ) : (
           <>
             <Route path="/auth/*" element={<AuthRoutes />} />
             <Route path="/*" element={<PublicRoutes />} />
+            <Route
+              path="/protected/*"
+              element={<Navigate to="/auth/login" />}
+            />
           </>
         )}
       </Routes>

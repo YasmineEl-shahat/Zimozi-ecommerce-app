@@ -1,10 +1,11 @@
 // Import the needed functions from the SDKs
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { apiKey } from "../../config.ts";
 
 //  Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDWYOpweMbHIEp5oj_vxp8FeJqb6aTQAsM",
+  apiKey: apiKey,
   authDomain: "zimozi-ecommerce-app.firebaseapp.com",
   projectId: "zimozi-ecommerce-app",
   storageBucket: "zimozi-ecommerce-app.appspot.com",

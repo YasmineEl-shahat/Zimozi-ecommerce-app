@@ -19,7 +19,7 @@ import {
   StyledDeleteIcon,
 } from "./Cart.styles.ts";
 import { ArrowBack } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import emptyCart from "../../assets/images/empty-cart.svg";
 
 const Cart: React.FC = () => {
@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
     useCart();
 
   return items.length === 0 ? (
-    <Container sx={{ position: "relative" }}>
+    <Container sx={{ position: "relative", minHeight: "50vh" }}>
       <IconButton
         onClick={() => navigate("/")}
         sx={{ position: "absolute", top: 0 }}
@@ -51,7 +51,7 @@ const Cart: React.FC = () => {
     <Box px={3} width="100%">
       <IconButton
         onClick={() => navigate("/")}
-        sx={{ position: "absolute", top: 150 }}
+        sx={{ position: "absolute", top: 90 }}
       >
         <ArrowBack />
       </IconButton>{" "}
@@ -92,9 +92,11 @@ const Cart: React.FC = () => {
       <Typography variant="h5" sx={{ mt: 2 }}>
         Total: ${totalAmount.toFixed(2)}
       </Typography>
-      <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-        Proceed to Checkout
-      </Button>
+      <Link to="/protected/checkout" className="custom-link">
+        <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+          Proceed to Checkout
+        </Button>
+      </Link>
     </Box>
   );
 };
