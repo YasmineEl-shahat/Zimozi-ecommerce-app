@@ -7,14 +7,17 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store.ts";
+import { logoutSuccess } from "../../redux/slices/authSlice.ts";
 
 const Header: React.FC = () => {
   const { totalAmount } = useCart();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+  const user = useSelector((state: RootState) => state.auth.user); // Get user from Redux store
 
   return (
     <StyledHeader>
@@ -27,7 +30,19 @@ const Header: React.FC = () => {
           <span>${totalAmount}</span>
         </Link>
         {isAuthenticated ? (
-          <LogoutIcon />
+          <Box display="flex" alignItems="center">
+            <Link to="/user-profile" className="custom-link">
+              {user?.photoURL && (
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName || "User"}
+                  style={{ width: 40, height: 40, borderRadius: "50%" }}
+                />
+              )}
+              <span>{user?.displayName}</span>
+            </Link>
+            <LogoutIcon onClick={() => dispatch(logoutSuccess())} />
+          </Box>
         ) : (
           <Link to="/auth/login" className="custom-link">
             <LoginIcon />
