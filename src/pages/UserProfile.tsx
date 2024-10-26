@@ -9,7 +9,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store.ts";
 import { updateUserProfile } from "../redux/slices/authSlice.ts";
-
 const UserProfile: React.FC = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.auth);
