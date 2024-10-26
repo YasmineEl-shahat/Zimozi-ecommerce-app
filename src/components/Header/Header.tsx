@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         </Link>
         {isAuthenticated ? (
           <Box display="flex" alignItems="center">
-            <Link to="/user-profile" className="custom-link">
+            <Link to="/protected/user-profile" className="custom-link">
               {user?.photoURL && (
                 <img
                   src={user.photoURL}
